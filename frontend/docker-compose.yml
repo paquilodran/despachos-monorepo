@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: frontend-despacho:latest
+    container_name: frontend_despacho
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - frontend_network
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:80" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  frontend_network:
+    driver: bridge

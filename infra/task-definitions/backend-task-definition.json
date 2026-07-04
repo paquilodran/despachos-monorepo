@@ -1,0 +1,167 @@
+{
+    "taskDefinition": {
+        "taskDefinitionArn": "arn:aws:ecs:us-east-1:599461371730:task-definition/backend-con-mysql:12",
+        "containerDefinitions": [
+            {
+                "name": "mysql",
+                "image": "599461371730.dkr.ecr.us-east-1.amazonaws.com/mysql-despachos:latest",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 3306,
+                        "hostPort": 3306,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": false,
+                "environment": [
+                    {
+                        "name": "MYSQL_DATABASE",
+                        "value": "despachos_db"
+                    },
+                    {
+                        "name": "MYSQL_PASSWORD",
+                        "value": "AppPass2024!"
+                    },
+                    {
+                        "name": "MYSQL_USER",
+                        "value": "appuser"
+                    },
+                    {
+                        "name": "MYSQL_ROOT_PASSWORD",
+                        "value": "RootPass2024!"
+                    }
+                ],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-group": "/ecs/backend-con-mysql",
+                        "awslogs-region": "us-east-1",
+                        "awslogs-stream-prefix": "ecs"
+                    }
+                },
+                "healthCheck": {
+                    "command": [
+                        "CMD-SHELL",
+                        "mysqladmin ping -h localhost"
+                    ],
+                    "interval": 10,
+                    "timeout": 5,
+                    "retries": 5,
+                    "startPeriod": 30
+                },
+                "systemControls": []
+            },
+            {
+                "name": "backend",
+                "image": "599461371730.dkr.ecr.us-east-1.amazonaws.com/backend-despachos:latest",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 8081,
+                        "hostPort": 8081,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "DB_NAME",
+                        "value": "despachos_db"
+                    },
+                    {
+                        "name": "DB_USERNAME",
+                        "value": "appuser"
+                    },
+                    {
+                        "name": "DB_PORT",
+                        "value": "3306"
+                    },
+                    {
+                        "name": "DB_ENDPOINT",
+                        "value": "localhost"
+                    },
+                    {
+                        "name": "DB_PASSWORD",
+                        "value": "AppPass2024!"
+                    }
+                ],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "dependsOn": [
+                    {
+                        "containerName": "mysql",
+                        "condition": "HEALTHY"
+                    }
+                ],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-group": "/ecs/backend-con-mysql",
+                        "awslogs-region": "us-east-1",
+                        "awslogs-stream-prefix": "ecs"
+                    }
+                },
+                "systemControls": []
+            }
+        ],
+        "family": "backend-con-mysql",
+        "taskRoleArn": "arn:aws:iam::599461371730:role/LabRole",
+        "executionRoleArn": "arn:aws:iam::599461371730:role/LabRole",
+        "networkMode": "awsvpc",
+        "revision": 12,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+            },
+            {
+                "name": "ecs.capability.execution-role-awslogs"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.task-iam-role"
+            },
+            {
+                "name": "ecs.capability.container-health-check"
+            },
+            {
+                "name": "ecs.capability.container-ordering"
+            },
+            {
+                "name": "ecs.capability.execution-role-ecr-pull"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            },
+            {
+                "name": "ecs.capability.task-eni"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+            }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+            "EC2",
+            "MANAGED_INSTANCES",
+            "FARGATE"
+        ],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "2048",
+        "memory": "4096",
+        "registeredAt": "2026-07-04T16:34:20.347000-04:00",
+        "registeredBy": "arn:aws:sts::599461371730:assumed-role/voclabs/user3296464=PATRICIO_ALEJANDRO_QUILODRAN_PINARES"
+    },
+    "tags": []
+}

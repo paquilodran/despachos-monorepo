@@ -1,0 +1,389 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-east-1:599461371730:service/despachos-cluster/frontend-service",
+            "serviceName": "frontend-service",
+            "clusterArn": "arn:aws:ecs:us-east-1:599461371730:cluster/despachos-cluster",
+            "loadBalancers": [
+                {
+                    "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac",
+                    "containerName": "frontend",
+                    "containerPort": 80
+                }
+            ],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 2,
+            "runningCount": 2,
+            "pendingCount": 0,
+            "capacityProviderStrategy": [
+                {
+                    "capacityProvider": "FARGATE",
+                    "weight": 1,
+                    "base": 0
+                }
+            ],
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-1:599461371730:task-definition/frontend-despachos:12",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": true,
+                    "rollback": true
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/3721755360979551077",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-1:599461371730:task-definition/frontend-despachos:12",
+                    "desiredCount": 2,
+                    "pendingCount": 0,
+                    "runningCount": 2,
+                    "failedTasks": 4,
+                    "createdAt": "2026-07-04T15:58:46.260000-04:00",
+                    "updatedAt": "2026-07-04T16:50:16.992000-04:00",
+                    "capacityProviderStrategy": [
+                        {
+                            "capacityProvider": "FARGATE",
+                            "weight": 1,
+                            "base": 0
+                        }
+                    ],
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0d4c5479cc155e80a",
+                                "subnet-0420b3184b5f17c08"
+                            ],
+                            "securityGroups": [
+                                "sg-010d2cbbfe1917d1a"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "FAILED",
+                    "rolloutStateReason": "ECS deployment circuit breaker: tasks failed to start."
+                }
+            ],
+            "roleArn": "arn:aws:iam::599461371730:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "9a3cd0df-4b54-4fe3-a60d-2721cccfa3cf",
+                    "createdAt": "2026-07-04T16:45:04.775000-04:00",
+                    "message": "(service frontend-service) (deployment ecs-svc/3721755360979551077) deployment failed: tasks failed to start."
+                },
+                {
+                    "id": "b00c90e2-e280-4809-8c09-605b4f05b06b",
+                    "createdAt": "2026-07-04T16:43:04.972000-04:00",
+                    "message": "(service frontend-service, taskSet ecs-svc/3721755360979551077) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "8ad67630-6b59-46b4-abce-6ca7cd3f08f6",
+                    "createdAt": "2026-07-04T16:42:55.357000-04:00",
+                    "message": "(service frontend-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "e4a86e76-e44e-49da-b89e-16f760229079",
+                    "createdAt": "2026-07-04T16:42:54.593000-04:00",
+                    "message": "(service frontend-service) has stopped 1 running tasks: (task 7be30469ac0f43b99e17a6791049516d)."
+                },
+                {
+                    "id": "7cf94c08-752c-4d00-9366-bbb81a1ff842",
+                    "createdAt": "2026-07-04T16:42:54.553000-04:00",
+                    "message": "(service frontend-service) (task 7be30469ac0f43b99e17a6791049516d) (port 80) is unhealthy in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac) due to (reason Health checks failed)."
+                },
+                {
+                    "id": "672e4dc6-b615-42b4-9cbd-66da46a258cd",
+                    "createdAt": "2026-07-04T16:42:34.999000-04:00",
+                    "message": "(service frontend-service, taskSet ecs-svc/3721755360979551077) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "1a52ea4c-e9ff-4495-8a32-2e85ba772d78",
+                    "createdAt": "2026-07-04T16:42:25.279000-04:00",
+                    "message": "(service frontend-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "39a10ab5-6ac6-4857-adfa-10c69aa370dd",
+                    "createdAt": "2026-07-04T16:42:24.305000-04:00",
+                    "message": "(service frontend-service) has stopped 1 running tasks: (task ecbaa6f6e3bb492a8e90aa039d051fe9)."
+                },
+                {
+                    "id": "21b17a3f-29b6-4268-b1f1-45d2de6451d6",
+                    "createdAt": "2026-07-04T16:42:24.272000-04:00",
+                    "message": "(service frontend-service) (task ecbaa6f6e3bb492a8e90aa039d051fe9) (port 80) is unhealthy in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac) due to (reason Target is in an Availability Zone that is not enabled for the load balancer)."
+                },
+                {
+                    "id": "2363fd27-b5ac-4720-8e69-a85eb1e5b4c0",
+                    "createdAt": "2026-07-04T16:42:15.655000-04:00",
+                    "message": "(service frontend-service) registered 2 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "7f1a1f12-832d-4474-993e-8d6f4d4a9abb",
+                    "createdAt": "2026-07-04T16:41:55.813000-04:00",
+                    "message": "(service frontend-service) has started 2 tasks: (task 2ff8fa1d3d5c4009aabc9aee14956de7) (task 90e0c86faef74b66b11a5f04ecd8f5fe). Amazon ECS replaced 2 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "ec700d7d-9ce5-454a-9380-850262f490c8",
+                    "createdAt": "2026-07-04T16:36:03.812000-04:00",
+                    "message": "(service frontend-service) deregistered 2 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "3e9b8265-6d0b-4a68-855e-7b6829377689",
+                    "createdAt": "2026-07-04T16:36:03.734000-04:00",
+                    "message": "(service frontend-service, taskSet ecs-svc/3721755360979551077) has begun draining connections on 2 tasks."
+                },
+                {
+                    "id": "ec70f519-d663-4b10-b0b2-ccacbb3739b6",
+                    "createdAt": "2026-07-04T16:36:03.729000-04:00",
+                    "message": "(service frontend-service) deregistered 2 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "6a81141a-159c-48e9-9afe-0c1681bb5666",
+                    "createdAt": "2026-07-04T16:35:53.768000-04:00",
+                    "message": "(service frontend-service) has stopped 2 running tasks: (task f76dcfa76ff545638e32f5bbcd63cdc6) (task bb83b858ede0429093a0f2e58236cb35)."
+                },
+                {
+                    "id": "2b2a63bf-7697-481e-9f57-2a5076ef3807",
+                    "createdAt": "2026-07-04T16:35:53.691000-04:00",
+                    "message": "(service frontend-service) (task f76dcfa76ff545638e32f5bbcd63cdc6) (port 80) is unhealthy in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac) due to (reason Target is in an Availability Zone that is not enabled for the load balancer)."
+                },
+                {
+                    "id": "b2a39733-034d-43ea-92fe-d29ef6628a9f",
+                    "createdAt": "2026-07-04T16:35:53.690000-04:00",
+                    "message": "(service frontend-service) (task bb83b858ede0429093a0f2e58236cb35) (port 80) is unhealthy in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac) due to (reason Health checks failed)."
+                },
+                {
+                    "id": "5c7f3a1e-eab9-4577-8eae-8be35e8b3a1b",
+                    "createdAt": "2026-07-04T16:00:26.083000-04:00",
+                    "message": "(service frontend-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "a375e4d3-459d-4688-ab1b-da0063516b18",
+                    "createdAt": "2026-07-04T16:00:06.405000-04:00",
+                    "message": "(service frontend-service) has started 1 tasks: (task 7be30469ac0f43b99e17a6791049516d). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "25d53285-95be-484a-93aa-1ea1a97eec8d",
+                    "createdAt": "2026-07-04T15:59:55.958000-04:00",
+                    "message": "(service frontend-service) registered 2 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "5d676771-702f-4b1f-8c1f-94ad0d6e0d2e",
+                    "createdAt": "2026-07-04T15:59:35.652000-04:00",
+                    "message": "(service frontend-service) has started 2 tasks: (task bb83b858ede0429093a0f2e58236cb35) (task f76dcfa76ff545638e32f5bbcd63cdc6). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "6680b4ca-7b0f-4373-bb56-9403ca556c90",
+                    "createdAt": "2026-07-04T15:59:25.729000-04:00",
+                    "message": "(service frontend-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:599461371730:targetgroup/frontend-tg/a3ef979042f05dac)"
+                },
+                {
+                    "id": "c9f7b698-79be-401f-b442-1afa3002ab57",
+                    "createdAt": "2026-07-04T15:59:05.430000-04:00",
+                    "message": "(service frontend-service) has started 1 tasks: (task ecbaa6f6e3bb492a8e90aa039d051fe9)."
+                }
+            ],
+            "createdAt": "2026-07-04T15:58:46.260000-04:00",
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0d4c5479cc155e80a",
+                        "subnet-0420b3184b5f17c08"
+                    ],
+                    "securityGroups": [
+                        "sg-010d2cbbfe1917d1a"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::599461371730:role/voclabs",
+            "enableECSManagedTags": true,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "ENABLED"
+        },
+        {
+            "serviceArn": "arn:aws:ecs:us-east-1:599461371730:service/despachos-cluster/backend-service",
+            "serviceName": "backend-service",
+            "clusterArn": "arn:aws:ecs:us-east-1:599461371730:cluster/despachos-cluster",
+            "loadBalancers": [],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 2,
+            "runningCount": 0,
+            "pendingCount": 0,
+            "capacityProviderStrategy": [
+                {
+                    "capacityProvider": "FARGATE",
+                    "weight": 1,
+                    "base": 0
+                }
+            ],
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-1:599461371730:task-definition/backend-con-mysql:11",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": true,
+                    "rollback": true
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/3973247620739029189",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-1:599461371730:task-definition/backend-con-mysql:11",
+                    "desiredCount": 2,
+                    "pendingCount": 0,
+                    "runningCount": 0,
+                    "failedTasks": 4,
+                    "createdAt": "2026-07-04T16:34:52.304000-04:00",
+                    "updatedAt": "2026-07-04T16:53:26.980000-04:00",
+                    "capacityProviderStrategy": [
+                        {
+                            "capacityProvider": "FARGATE",
+                            "weight": 1,
+                            "base": 0
+                        }
+                    ],
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0d4c5479cc155e80a",
+                                "subnet-0420b3184b5f17c08",
+                                "subnet-0c34db38296d96f16",
+                                "subnet-0018348200dd8f99a",
+                                "subnet-0facc6d37b11ea36e",
+                                "subnet-0180031c5b6991452"
+                            ],
+                            "securityGroups": [
+                                "sg-010d2cbbfe1917d1a"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "FAILED",
+                    "rolloutStateReason": "ECS deployment circuit breaker: tasks failed to start."
+                }
+            ],
+            "roleArn": "arn:aws:iam::599461371730:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "e798307b-bf06-4cdb-ad20-fd7a6a6d791e",
+                    "createdAt": "2026-07-04T16:38:47.151000-04:00",
+                    "message": "(service backend-service) (deployment ecs-svc/3973247620739029189) deployment failed: tasks failed to start."
+                },
+                {
+                    "id": "c17b180e-a254-4ded-911b-46c234426419",
+                    "createdAt": "2026-07-04T16:38:35.049000-04:00",
+                    "message": "(service backend-service) has started 2 tasks: (task 252ab2c862804d5589f13e6306654384) (task dca11b275940439f9563600263bc7136)."
+                },
+                {
+                    "id": "e58bad06-749a-4ef2-8164-32358c2b9b47",
+                    "createdAt": "2026-07-04T16:37:02.282000-04:00",
+                    "message": "(service backend-service) has started 2 tasks: (task 821947f813d64b9fb5b7920dfd7c91b6) (task 9e2c48230a4044d1aac262a1f794ac88)."
+                },
+                {
+                    "id": "cc223e32-b6f2-4ed9-8492-58a1b9484eb3",
+                    "createdAt": "2026-07-04T16:35:28.328000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task 8e0ab3359ebe494f97fb7691351b98aa)."
+                },
+                {
+                    "id": "d6585971-541d-423f-9f73-1e3bb0989e62",
+                    "createdAt": "2026-07-04T16:35:09.483000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task 8df4c8182e1244988e3836e87e80d820)."
+                },
+                {
+                    "id": "f00e2b57-85e6-490b-b63d-691eaa91329b",
+                    "createdAt": "2026-07-04T16:18:08.161000-04:00",
+                    "message": "(service backend-service) (deployment ecs-svc/7117004820230977414) deployment failed: tasks failed to start."
+                },
+                {
+                    "id": "ec250533-ec9e-444b-844e-22e0ed778416",
+                    "createdAt": "2026-07-04T16:17:24.024000-04:00",
+                    "message": "(service backend-service) has started 2 tasks: (task 3724fab433394247a7892119aad02a4e) (task a939cfe8a8ec4958b8e3c4a8677d9f17)."
+                },
+                {
+                    "id": "ee459b51-6aea-42ca-99f7-72b86f7d6dab",
+                    "createdAt": "2026-07-04T16:15:55.846000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task 86db6d22e4e6422194d19e69a71d18cb)."
+                },
+                {
+                    "id": "7db3399a-e1ee-44db-9281-7eb9d74887b2",
+                    "createdAt": "2026-07-04T16:15:46.577000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task 5f7ce2df87244084a5c3166253d48b6c)."
+                },
+                {
+                    "id": "8c2b2091-3428-42b9-ba28-8fc866484e5d",
+                    "createdAt": "2026-07-04T16:14:15.747000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task 4e827754e8ea4bf6a07cf28da684108a)."
+                },
+                {
+                    "id": "f31bdc45-3a47-429a-8c20-e3c3bc0eb02d",
+                    "createdAt": "2026-07-04T16:13:54.579000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task e15fe0c360504857b7be5e888651515c)."
+                },
+                {
+                    "id": "ecd21b83-4216-40a4-8743-25b839c82244",
+                    "createdAt": "2026-07-04T16:12:43.704000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task fff51a9e8160413880a6925b1076dfc7)."
+                },
+                {
+                    "id": "fe284493-d046-4d93-aa46-b53dcf2ee92d",
+                    "createdAt": "2026-07-04T16:12:15.187000-04:00",
+                    "message": "(service backend-service) has started 1 tasks: (task 62838294c85745408e7c519180826977)."
+                }
+            ],
+            "createdAt": "2026-07-04T16:12:01.265000-04:00",
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0d4c5479cc155e80a",
+                        "subnet-0420b3184b5f17c08",
+                        "subnet-0c34db38296d96f16",
+                        "subnet-0018348200dd8f99a",
+                        "subnet-0facc6d37b11ea36e",
+                        "subnet-0180031c5b6991452"
+                    ],
+                    "securityGroups": [
+                        "sg-010d2cbbfe1917d1a"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::599461371730:role/voclabs",
+            "enableECSManagedTags": true,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "ENABLED"
+        }
+    ],
+    "failures": []
+}

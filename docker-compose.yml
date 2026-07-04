@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - despachos-network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      # Si la variable DB_ENDPOINT existe en el sistema/ECS, usa ese valor. Si no, usa 'mysql' por defecto para local.
+      - DB_ENDPOINT=${DB_ENDPOINT:-mysql}
+      - DB_PORT=3306
+      - DB_NAME=despachos_db
+      - DB_USERNAME=appuser
+      - DB_PASSWORD=AppPass2024!
+    networks:
+      - despachos-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_DATABASE=despachos_db
+      - MYSQL_USER=appuser
+      - MYSQL_PASSWORD=AppPass2024!
+      - MYSQL_ROOT_PASSWORD=RootPass2024!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - despachos-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  despachos-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

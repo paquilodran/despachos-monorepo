@@ -1,0 +1,61 @@
+version: "3.9"
+
+services:
+  # Base de datos MySQL 8.0
+  db-despachos:
+    image: mysql:8.0
+    container_name: mysql_despachos
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME:-despachos_db}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    # NAMED VOLUME: Docker gestiona donde se guardan los datos
+    # Los datos persisten aunque el contenedor se destruya y recree
+    volumes:
+      - despachos_db_data:/var/lib/mysql
+    networks:
+      - backend_network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Backend Spring Boot
+  backend-despachos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: backend-despachos:latest
+    container_name: backend_despachos
+    ports:
+      - "8081:8081"
+    environment:
+      # 'db-despachos' es el nombre del servicio arriba
+      # Docker resuelve ese nombre como si fuera una IP
+      DB_ENDPOINT: db-despachos
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-despachos_db}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      db-despachos:
+        condition: service_healthy
+    networks:
+      - backend_network
+    restart: unless-stopped
+
+# Named volume: persist datos de MySQL
+volumes:
+  despachos_db_data:
+    driver: local
+
+# Red interna: backend y MySQL se hablan solo entre ellos
+networks:
+  backend_network:
+    driver: bridge

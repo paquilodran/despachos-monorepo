@@ -1,0 +1,56 @@
+{
+    "ScalingPolicies": [
+        {
+            "PolicyARN": "arn:aws:autoscaling:us-east-1:599461371730:scalingPolicy:0b66a0a9-6a87-44ca-9b48-d0064132dc55:resource/ecs/service/despachos-cluster/backend-service:policyName/backend-cpu-scaling",
+            "PolicyName": "backend-cpu-scaling",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/despachos-cluster/backend-service",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "PolicyType": "TargetTrackingScaling",
+            "TargetTrackingScalingPolicyConfiguration": {
+                "TargetValue": 50.0,
+                "PredefinedMetricSpecification": {
+                    "PredefinedMetricType": "ECSServiceAverageCPUUtilization"
+                },
+                "DisableScaleIn": false
+            },
+            "Alarms": [
+                {
+                    "AlarmName": "TargetTracking-service/despachos-cluster/backend-service-AlarmHigh-3110c62c-23cb-4877-9dd0-a0a68cefffd1",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-1:599461371730:alarm:TargetTracking-service/despachos-cluster/backend-service-AlarmHigh-3110c62c-23cb-4877-9dd0-a0a68cefffd1"
+                },
+                {
+                    "AlarmName": "TargetTracking-service/despachos-cluster/backend-service-AlarmLow-98ce0d56-1640-4f71-93d6-918d6ecea9a9",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-1:599461371730:alarm:TargetTracking-service/despachos-cluster/backend-service-AlarmLow-98ce0d56-1640-4f71-93d6-918d6ecea9a9"
+                }
+            ],
+            "CreationTime": "2026-07-04T16:53:26.081000-04:00"
+        },
+        {
+            "PolicyARN": "arn:aws:autoscaling:us-east-1:599461371730:scalingPolicy:bfda00df-abad-4b77-9535-d04757f7aadc:resource/ecs/service/despachos-cluster/frontend-service:policyName/frontend-cpu-scaling",
+            "PolicyName": "frontend-cpu-scaling",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/despachos-cluster/frontend-service",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "PolicyType": "TargetTrackingScaling",
+            "TargetTrackingScalingPolicyConfiguration": {
+                "TargetValue": 50.0,
+                "PredefinedMetricSpecification": {
+                    "PredefinedMetricType": "ECSServiceAverageCPUUtilization"
+                },
+                "DisableScaleIn": false
+            },
+            "Alarms": [
+                {
+                    "AlarmName": "TargetTracking-service/despachos-cluster/frontend-service-AlarmHigh-cd53dbd5-0118-438f-98b8-6fd9e661956c",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-1:599461371730:alarm:TargetTracking-service/despachos-cluster/frontend-service-AlarmHigh-cd53dbd5-0118-438f-98b8-6fd9e661956c"
+                },
+                {
+                    "AlarmName": "TargetTracking-service/despachos-cluster/frontend-service-AlarmLow-cab44414-82e4-4463-9ed5-891bbd9b4257",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-1:599461371730:alarm:TargetTracking-service/despachos-cluster/frontend-service-AlarmLow-cab44414-82e4-4463-9ed5-891bbd9b4257"
+                }
+            ],
+            "CreationTime": "2026-07-04T16:50:15.989000-04:00"
+        }
+    ]
+}
