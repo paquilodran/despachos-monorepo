@@ -23,12 +23,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Dar permisos a mvnw
-        run: chmod +x backend/mvnw
-
+      # YA NO se necesita "Dar permisos a mvnw"
       - name: Build JAR con Maven
         working-directory: ./backend
-        run: ./mvnw -B -DskipTests package
+        run: mvn -B -DskipTests package   # ← CAMBIO: usa "mvn" en vez de "./mvnw"
 
       - name: Configurar credenciales AWS
         uses: aws-actions/configure-aws-credentials@v4
