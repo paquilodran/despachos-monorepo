@@ -1,0 +1,71 @@
+{
+  "family": "backend-con-mysql",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "2048",
+  "memory": "4096",
+  "taskRoleArn": "arn:aws:iam::599461371730:role/LabRole",
+  "executionRoleArn": "arn:aws:iam::599461371730:role/LabRole",
+  "containerDefinitions": [
+    {
+      "name": "mysql",
+      "image": "599461371730.dkr.ecr.us-east-1.amazonaws.com/mysql-despachos:latest",
+      "essential": true,
+      "portMappings": [
+        {"containerPort": 3306, "protocol": "tcp"}
+      ],
+      "environment": [
+        {"name": "MYSQL_DATABASE", "value": "despachos_db"},
+        {"name": "MYSQL_USER", "value": "appuser"},
+        {"name": "MYSQL_PASSWORD", "value": "AppPass2024!"},
+        {"name": "MYSQL_ROOT_PASSWORD", "value": "RootPass2024!"}
+      ],
+      "healthCheck": {
+        "command": ["CMD-SHELL", "mysqladmin ping -u root -pRootPass2024! || exit 1"],
+        "interval": 10,
+        "timeout": 5,
+        "retries": 5,
+        "startPeriod": 20
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/backend-con-mysql",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-create-group": "true"
+        }
+      }
+    },
+    {
+      "name": "backend",
+      "image": "599461371730.dkr.ecr.us-east-1.amazonaws.com/backend-despachos:latest",
+      "essential": true,
+      "portMappings": [
+        {"containerPort": 8081, "protocol": "tcp"}
+      ],
+      "environment": [
+        {"name": "DB_ENDPOINT", "value": "localhost"},
+        {"name": "DB_PORT", "value": "3306"},
+        {"name": "DB_NAME", "value": "despachos_db"},
+        {"name": "DB_USERNAME", "value": "appuser"},
+        {"name": "DB_PASSWORD", "value": "AppPass2024!"}
+      ],
+      "dependsOn": [
+        {
+          "containerName": "mysql",
+          "condition": "HEALTHY"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/backend-con-mysql",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-create-group": "true"
+        }
+      }
+    }
+  ]
+}

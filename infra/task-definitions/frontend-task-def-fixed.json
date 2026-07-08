@@ -1,0 +1,46 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "599461371730.dkr.ecr.us-east-1.amazonaws.com/frontend-despacho:6ed05e3ade399e83507716754f9d437c71eae9ba",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp",
+          "name": "frontend-80-tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/frontend-despachos",
+          "awslogs-create-group": "true",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "frontend-despachos",
+  "taskRoleArn": "arn:aws:iam::599461371730:role/LabRole",
+  "executionRoleArn": "arn:aws:iam::599461371730:role/LabRole",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}
